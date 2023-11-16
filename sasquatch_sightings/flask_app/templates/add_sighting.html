@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    <title>Sasquatch Websighting</title>
+</head>
+<body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/logout">Logout</a>
+        </li>
+    </ul>
+    <div class="card" style="width: 800px; margin-top: 70px; margin-left: 280px;">
+        <div class="card-header">
+            <h4>Report Sighting</h4>
+        </div>
+        <div class="card-body">
+            <form action="/create_sighting" method="post">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <label for="location">Location:</label>
+                <input class="input-group-text" type="text" name="location">
+                <label for="description">What Happened?</label>
+                <textarea class="input-group-text" id="exampleFormControlTextarea1" name="description" rows="4" cols="80"></textarea>
+                <label for="date">Date of Sigting:</label>
+                <input class="input-group-text" type="date" name="date" placeholder="YYYY">
+                <label for="amount"># of Sasquatches:</label>
+                <input class="input-group-text" type="number" name="amount">
+                <input type="submit" value="Report" style="margin-top: 20px; margin-left: 480px;">
+            </form>
+        </div>
+    </div>
+
+</body>
+<footer style="text-align: center;"> © Sasquatch Websighting</footer>
+</html>
